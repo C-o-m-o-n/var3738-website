@@ -18,20 +18,20 @@ export default function Home() {
     {
       title: 'Streets',
       description: 'Grassroots mobilization harnessing Article 37 rights to connect youth voices directly to civic power. From community organizing to electoral participation.',
-      icon: <Heart size={32} className="text-foreground" />,
-      accentColor: 'bg-primary',
+      icon: <Heart size={32} className="text-white" />,
+      accentColor: 'bg-gradient-to-br from-primary to-secondary',
     },
     {
       title: 'Ideology',
       description: 'Structured policy dialogue with NEDP ensuring youth voices shape national development priorities. Transforming demands into democratic demands.',
-      icon: <Zap size={32} className="text-foreground" />,
-      accentColor: 'bg-primary',
+      icon: <Zap size={32} className="text-white" />,
+      accentColor: 'bg-gradient-to-br from-secondary to-primary',
     },
     {
       title: 'Technology',
       description: 'Digital onboarding via Uamuzi Tech creating seamless pathways for civic engagement. Making democracy accessible to all through innovation.',
-      icon: <Globe size={32} className="text-foreground" />,
-      accentColor: 'bg-primary',
+      icon: <Globe size={32} className="text-white" />,
+      accentColor: 'bg-gradient-to-br from-primary via-secondary to-primary',
     },
   ];
 
@@ -41,8 +41,6 @@ export default function Home() {
       <HeroSection
         headline="FROM THE STREETS TO THE BALLOT"
         subheadline="VAR 37-38: The Voice of a Generation. Institutionalizing youth energy into democratic power."
-        backgroundColor="bg-black"
-        textColor="text-background"
       />
 
       {/* Live Impact Banner */}
@@ -59,12 +57,12 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="w-full bg-primary text-foreground py-16 md:py-24 border-y-4 border-foreground">
+      <section className="w-full bg-gradient-to-r from-primary/10 via-card to-secondary/10 py-16 md:py-24 border-y border-border/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-5xl font-black mb-6 text-balance">
+          <h2 className="text-3xl md:text-5xl font-black mb-6 text-balance text-foreground">
             Ready to Activate Democracy?
           </h2>
-          <p className="text-lg mb-8 max-w-2xl mx-auto">
+          <p className="text-lg mb-8 max-w-2xl mx-auto text-muted-foreground">
             Join over 1,000 youths transforming protest energy into electoral power. Register for your ward's townhall today.
           </p>
           <TiltButton className="text-lg md:text-xl px-8 py-4">

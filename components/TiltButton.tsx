@@ -16,9 +16,9 @@ export default function TiltButton({
   return (
     <motion.button
       onClick={onClick}
-      className={`stamp-button ${className}`}
-      whileHover={{ rotateZ: -2 }}
-      whileTap={{ rotateZ: -4, scale: 0.98 }}
+      className={`glow-button ${className}`}
+      whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(217, 70, 239, 0.6)' }}
+      whileTap={{ scale: 0.95 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
     >
       {children}

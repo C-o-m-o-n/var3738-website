@@ -16,11 +16,11 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-background neo-border border-b-4">
+    <header className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-border/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+          <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <Image
               src="/var-logo.png"
               alt="VAR 37-38 Logo"
@@ -29,8 +29,8 @@ export default function Header() {
               className="h-12 w-auto"
             />
             <div className="hidden sm:flex flex-col">
-              <span className="font-bold text-sm leading-none">VAR</span>
-              <span className="text-xs font-bold">37-38</span>
+              <span className="font-bold text-sm leading-none text-primary">VAR</span>
+              <span className="text-xs font-bold text-muted-foreground">37-38</span>
             </div>
           </Link>
 
@@ -49,7 +49,7 @@ export default function Header() {
 
           {/* CTA Button - Desktop */}
           <div className="hidden md:block">
-            <button className="stamp-button text-sm">
+            <button className="glow-button text-sm">
               Join the Movement
             </button>
           </div>
@@ -57,7 +57,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 hover:bg-muted"
+            className="md:hidden p-2 hover:text-primary transition-colors"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -66,7 +66,7 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden pb-6 space-y-4 border-t-4 border-foreground pt-4">
+          <nav className="md:hidden pb-6 space-y-4 border-t border-border/50 pt-4">
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -77,7 +77,7 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
-            <button className="w-full stamp-button text-sm mt-4">
+            <button className="w-full glow-button text-sm mt-4">
               Join the Movement
             </button>
           </nav>

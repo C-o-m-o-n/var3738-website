@@ -48,29 +48,30 @@ export default function PillarsGrid({ pillars }: PillarsGridProps) {
           {pillars.map((pillar, idx) => (
             <motion.div
               key={idx}
-              className="stamp-card bg-background min-h-96 flex flex-col justify-between group hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-shadow"
+              className="glow-card min-h-96 flex flex-col justify-between group"
               variants={cardVariants}
+              whileHover={{ y: -8, borderColor: 'rgba(217, 70, 239, 0.8)' }}
             >
               {/* Icon/Accent */}
               {pillar.icon && (
-                <div className={`w-16 h-16 ${pillar.accentColor || 'bg-primary'} border-4 border-foreground flex items-center justify-center mb-4`}>
+                <div className={`w-16 h-16 ${pillar.accentColor || 'bg-gradient-to-br from-primary to-secondary'} rounded-lg flex items-center justify-center mb-4 text-white glow-md`}>
                   {pillar.icon}
                 </div>
               )}
 
               {/* Title */}
-              <h3 className="text-2xl md:text-3xl font-black mb-4 text-balance">
+              <h3 className="text-2xl md:text-3xl font-black mb-4 text-balance text-foreground">
                 {pillar.title}
               </h3>
 
               {/* Description */}
-              <p className="text-sm md:text-base leading-relaxed flex-grow">
+              <p className="text-sm md:text-base leading-relaxed flex-grow text-muted-foreground">
                 {pillar.description}
               </p>
 
               {/* Bottom Accent */}
-              <div className="mt-8 pt-6 border-t-4 border-foreground">
-                <span className="text-xs font-bold uppercase tracking-widest opacity-70">
+              <div className="mt-8 pt-6 border-t border-border/50">
+                <span className="text-xs font-bold uppercase tracking-widest text-primary/70">
                   Core Pillar
                 </span>
               </div>
