@@ -1,14 +1,16 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
+  title: 'VAR 37-38 - The Voice of a Generation',
+  description: 'VAR 37-38: Institutionalizing youth energy into democratic power. Democracy Activated.',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -37,7 +39,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-sans antialiased">
-        {children}
+        <Header />
+        <main className="min-h-screen">
+          {children}
+        </main>
+        <Footer />
         <Analytics />
       </body>
     </html>
