@@ -48,39 +48,33 @@ export default function PillarsGrid({ pillars }: PillarsGridProps) {
           {pillars.map((pillar, idx) => (
             <motion.div
               key={idx}
-              className="glass-card min-h-[400px] flex flex-col p-10 rounded-[2.5rem] group relative"
+              className="neu-card min-h-[400px] flex flex-col p-10 bg-white group relative"
               variants={cardVariants}
-              whileHover={{ y: -12 }}
             >
-              {/* Animated Inner Glow */}
-              <div className="absolute -top-24 -left-24 w-48 h-48 bg-primary/10 rounded-full blur-[80px] group-hover:bg-primary/20 transition-all duration-700"></div>
-
               {/* Icon/Accent */}
               {pillar.icon && (
                 <div className="relative mb-10">
-                  <div className={`w-20 h-20 ${pillar.accentColor || 'bg-gradient-to-br from-primary to-secondary'} rounded-2xl flex items-center justify-center text-white relative z-10 shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform duration-500`}>
+                  <div className={`w-20 h-20 ${pillar.accentColor || 'bg-primary'} border-4 border-black rounded-2xl flex items-center justify-center text-black relative z-10 neu-shadow group-hover:bg-accent transition-all duration-300`}>
                     {pillar.icon}
                   </div>
-                  <div className={`absolute inset-0 w-20 h-20 ${pillar.accentColor || 'bg-primary'} blur-2xl opacity-20 group-hover:opacity-40 transition-opacity`}></div>
                 </div>
               )}
 
               {/* Title */}
-              <h3 className="text-3xl font-black mb-6 leading-tight group-hover:gradient-text transition-all duration-300">
+              <h3 className="text-4xl font-black mb-6 leading-tight uppercase italic tracking-tighter">
                 {pillar.title}
               </h3>
 
               {/* Description */}
-              <p className="text-base leading-relaxed flex-grow text-muted-foreground group-hover:text-foreground/80 transition-colors">
+              <p className="text-lg leading-tight flex-grow font-bold text-black/80">
                 {pillar.description}
               </p>
 
               {/* Bottom Accent */}
-              <div className="mt-10 pt-8 border-t border-white/5 flex items-center justify-between">
-                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">
+              <div className="mt-10 pt-8 border-t-4 border-black/5 flex items-center justify-between">
+                <span className="neu-badge bg-secondary">
                   Core Pillar
                 </span>
-                <div className="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
               </div>
             </motion.div>
           ))}

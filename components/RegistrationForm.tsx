@@ -58,18 +58,18 @@ export default function RegistrationForm({ wardName, onClose }: RegistrationForm
   };
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/40 backdrop-none flex items-center justify-center z-50 p-4">
       <motion.div
-        className="glass-card max-w-md w-full p-8 rounded-[2.5rem] relative"
-        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+        className="neu-card max-w-lg w-full p-8 md:p-12 relative bg-[#fdfde1]"
+        initial={{ opacity: 0, scale: 0.9, y: 40 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.9, y: 20 }}
+        exit={{ opacity: 0, scale: 0.9, y: 40 }}
       >
         <button 
           onClick={onClose}
-          className="absolute top-6 right-6 p-2 rounded-full hover:bg-white/10 transition-colors text-muted-foreground"
+          className="absolute top-6 right-6 w-12 h-12 bg-white border-4 border-black rounded-xl flex items-center justify-center neu-shadow active:shadow-none transition-all"
         >
-          <X size={20} />
+          <X size={24} className="text-black" />
         </button>
 
         <AnimatePresence mode="wait">
@@ -85,30 +85,32 @@ export default function RegistrationForm({ wardName, onClose }: RegistrationForm
             >
               {/* Header */}
               <div className="mb-10">
-                <h2 className="text-3xl font-black mb-2 leading-tight">Register for <span className="gradient-text">{wardName}</span></h2>
-                <div className="flex gap-2 mt-4">
+                <h2 className="text-4xl font-black mb-4 leading-tight uppercase italic tracking-tighter">
+                  Register for <span className="bg-primary px-3 border-4 border-black inline-block transform rotate-1">{wardName}</span>
+                </h2>
+                <div className="flex gap-3 mt-6">
                   {[1, 2, 3].map((s) => (
                     <div 
                       key={s} 
-                      className={`h-1.5 flex-1 rounded-full transition-all duration-500 ${s <= step ? 'bg-primary' : 'bg-white/10'}`}
+                      className={`h-4 flex-1 border-4 border-black transition-all duration-500 ${s <= step ? 'bg-secondary' : 'bg-white'}`}
                     ></div>
                   ))}
                 </div>
               </div>
 
               {/* Steps Content */}
-              <div className="min-h-[120px] mb-10">
+              <div className="min-h-[160px] mb-10">
                 {step === 1 && (
                   <motion.div variants={stepVariants} className="space-y-4">
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">Full Name</label>
+                      <label className="block text-sm font-black uppercase tracking-widest text-black/60 mb-3 ml-2">Full Name</label>
                       <input
                         type="text"
                         name="fullName"
                         value={formData.fullName}
                         onChange={handleInputChange}
-                        placeholder="Enter your name"
-                        className="w-full px-6 py-4 rounded-2xl bg-white/5 border border-white/10 text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:bg-white/10 transition-all font-medium"
+                        placeholder="ENTER YOUR NAME"
+                        className="neu-input"
                         required
                         autoFocus
                       />
@@ -119,14 +121,14 @@ export default function RegistrationForm({ wardName, onClose }: RegistrationForm
                 {step === 2 && (
                   <motion.div variants={stepVariants} className="space-y-4">
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">Phone Number</label>
+                      <label className="block text-sm font-black uppercase tracking-widest text-black/60 mb-3 ml-2">Phone Number</label>
                       <input
                         type="tel"
                         name="phoneNumber"
                         value={formData.phoneNumber}
                         onChange={handleInputChange}
                         placeholder="+254 XXX XXX XXX"
-                        className="w-full px-6 py-4 rounded-2xl bg-white/5 border border-white/10 text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:bg-white/10 transition-all font-medium"
+                        className="neu-input"
                         required
                         autoFocus
                       />
@@ -136,7 +138,7 @@ export default function RegistrationForm({ wardName, onClose }: RegistrationForm
 
                 {step === 3 && (
                   <motion.div variants={stepVariants} className="space-y-6">
-                    <div className="flex items-start gap-4 p-4 rounded-2xl bg-primary/5 border border-primary/20">
+                    <div className="flex items-start gap-6 p-6 bg-white border-4 border-black neu-shadow">
                       <div className="relative mt-1">
                         <input
                           type="checkbox"
@@ -144,15 +146,15 @@ export default function RegistrationForm({ wardName, onClose }: RegistrationForm
                           name="isYouthChampion"
                           checked={formData.isYouthChampion}
                           onChange={handleInputChange}
-                          className="w-6 h-6 rounded-lg bg-white/5 border-2 border-primary/50 text-primary focus:ring-primary/30 cursor-pointer appearance-none checked:bg-primary"
+                          className="w-8 h-8 border-4 border-black bg-white appearance-none checked:bg-primary cursor-pointer transition-colors"
                         />
-                        {formData.isYouthChampion && <CheckCircle size={14} className="absolute top-1 left-1 text-white pointer-events-none" />}
+                        {formData.isYouthChampion && <CheckCircle size={20} className="absolute top-1 left-1 text-black pointer-events-none" />}
                       </div>
                       <div>
-                        <label htmlFor="champion" className="font-bold text-base cursor-pointer block mb-1">
-                          Apply as Youth Champion
+                        <label htmlFor="champion" className="font-black text-xl uppercase italic cursor-pointer block mb-2">
+                          Become a Champion
                         </label>
-                        <p className="text-xs text-muted-foreground leading-relaxed">
+                        <p className="text-sm font-bold text-black/60 leading-tight">
                           Champions help lead townhall discussions and mobilize their local communities.
                         </p>
                       </div>
@@ -162,12 +164,12 @@ export default function RegistrationForm({ wardName, onClose }: RegistrationForm
               </div>
 
               {/* Navigation Buttons */}
-              <div className="flex gap-4">
+              <div className="flex gap-6">
                 {step > 1 && (
                   <button
                     type="button"
                     onClick={handleBack}
-                    className="flex-1 px-4 py-4 font-bold rounded-2xl border border-white/10 bg-white/5 text-foreground hover:bg-white/10 transition-colors"
+                    className="neu-button-outline flex-1 text-lg"
                   >
                     Back
                   </button>
@@ -180,16 +182,16 @@ export default function RegistrationForm({ wardName, onClose }: RegistrationForm
                       (step === 1 && !formData.fullName) ||
                       (step === 2 && !formData.phoneNumber)
                     }
-                    className="flex-1 premium-button disabled:opacity-50 disabled:scale-100 disabled:cursor-not-allowed"
+                    className="neu-button flex-1 text-lg disabled:opacity-50 disabled:grayscale"
                   >
                     Continue
                   </button>
                 ) : (
                   <button
                     type="submit"
-                    className="flex-1 premium-button"
+                    className="neu-button-secondary flex-1 text-lg"
                   >
-                    Submit Registration
+                    Register now
                   </button>
                 )}
               </div>
@@ -201,19 +203,19 @@ export default function RegistrationForm({ wardName, onClose }: RegistrationForm
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="text-center py-10"
+              className="text-center py-12"
             >
               <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
+                initial={{ scale: 0, rotate: -20 }}
+                animate={{ scale: 1, rotate: 0 }}
                 transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                className="mb-6 inline-flex p-4 rounded-full bg-primary/20 text-primary"
+                className="mb-8 inline-flex p-6 bg-primary border-4 border-black neu-shadow-lg"
               >
-                <CheckCircle size={64} />
+                <CheckCircle size={80} className="text-black" />
               </motion.div>
-              <h3 className="text-3xl font-black mb-3 italic">Success!</h3>
-              <p className="text-muted-foreground max-w-[240px] mx-auto">
-                You're registered for {wardName}. We'll contact you soon!
+              <h3 className="text-5xl font-black italic uppercase tracking-tighter mb-4">You're in!</h3>
+              <p className="text-xl font-bold text-black/60 max-w-sm mx-auto leading-tight">
+                Welcome to the movement. We'll contact you at {wardName}.
               </p>
             </motion.div>
           )}

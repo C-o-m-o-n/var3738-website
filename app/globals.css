@@ -1,168 +1,139 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-
-
-/* Modern Dark Theme with Purple Accents for VAR 37-38 */
-:root {
-  /* Premium Dark Theme - Deep Obsidian & Electric Purple/Cyan */
-  --background: #020205; /* Near black */
-  --foreground: #f8fafc; /* Crisp slate white */
-  --card: rgba(15, 15, 35, 0.6); /* Translucent obsidian */
-  --card-foreground: #f1f5f9;
-  --popover: #0a0a0f;
-  --popover-foreground: #f8fafc;
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
   
-  /* Brand Colors: Electric Purple and Cyber Cyan */
-  --primary: #9d52ff; /* Vibrant Purple */
-  --primary-foreground: #ffffff;
+  --color-background: #fdfde1;
+  --color-foreground: #000000;
   
-  --secondary: #0ea5e9; /* Deep Sky Blue */
-  --secondary-foreground: #ffffff;
+  --color-primary: #ccf381;
+  --color-secondary: #ffc0ad;
+  --color-accent: #818cf8;
   
-  /* Muted states */
-  --muted: #1e1e2d;
-  --muted-foreground: #94a3b8;
-  
-  /* Accent: Neon Cyan */
-  --accent: #22d3ee;
-  --accent-foreground: #020617;
-  
-  --destructive: #ef4444;
-  --destructive-foreground: #f8fafc;
-  
-  /* Infrastructure */
-  --border: rgba(255, 255, 255, 0.1);
-  --input: #0f172a;
-  --ring: #a855f7;
-  
-  /* Radius: Smooth large corners */
-  --radius: 1rem;
-
-  /* Aurora/Mesh Glow Colors */
-  --glow-1: rgba(157, 82, 255, 0.15);
-  --glow-2: rgba(34, 211, 238, 0.15);
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
 }
 
-@theme inline {
-  --font-sans: 'Inter', 'Geist', sans-serif;
-  --font-mono: 'Geist Mono', monospace;
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --radius: var(--radius);
-}
-
+/* NeuBrutalist Utilities and Components */
 @layer components {
-  /* Premium Glassmorphism Logic */
-  .glass-card {
-    @apply relative overflow-hidden backdrop-blur-xl bg-card border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)];
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.05) 0%,
-      rgba(255, 255, 255, 0) 100%
-    );
+  .neu-shadow {
+    box-shadow: 4px 4px 0px 0px #000;
   }
 
-  .glass-header {
-    @apply sticky top-0 z-50 backdrop-blur-lg border-b border-white/5 bg-black/40;
+  .neu-shadow-lg {
+    box-shadow: 8px 8px 0px 0px #000;
   }
 
-  .neon-glow-purple {
-    @apply shadow-[0_0_20px_rgba(157,82,255,0.3)];
-  }
-
-  .neon-glow-cyan {
-    @apply shadow-[0_0_20px_rgba(34,211,238,0.3)];
-  }
-
-  .aurora-bg {
-    @apply relative overflow-hidden;
-    background: radial-gradient(circle at 20% 30%, var(--glow-1) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, var(--glow-2) 0%, transparent 40%);
-  }
-
-  .premium-button {
-    @apply relative inline-flex items-center justify-center px-8 py-3 font-bold rounded-full transition-all duration-300 overflow-hidden;
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-    box-shadow: 0 4px 15px rgba(157, 82, 255, 0.4);
-  }
-
-  .premium-button:hover {
-    @apply scale-105;
-    box-shadow: 0 8px 25px rgba(157, 82, 255, 0.6);
-  }
-
-  .premium-button::after {
-    content: '';
-    @apply absolute inset-0 opacity-0 transition-opacity duration-300 bg-white/20;
-  }
-
-  .premium-button:hover::after {
-    @apply opacity-100;
-  }
-
-  /* Text Gradient Utility */
-  .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent font-black;
-  }
-}
-
-/* Modern dark theme utilities with glowing effects */
-@layer components {
-  .glow-button {
-    @apply px-6 py-3 bg-primary text-primary-foreground font-bold rounded-lg border border-primary transition-all duration-300 hover:shadow-[0_0_20px_rgba(217,70,239,0.6)] hover:border-primary/80 active:shadow-[0_0_10px_rgba(217,70,239,0.4)];
+  .neu-border {
+    border: 2px solid #000;
   }
   
-  .glow-card {
-    @apply bg-card border border-border rounded-lg p-6 transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(217,70,239,0.2)];
+  .neu-border-thick {
+    border: 4px solid #000;
   }
-  
-  .glow-sm {
-    box-shadow: var(--glow-sm);
+
+  .neu-card {
+    background-color: #ffffff;
+    border: 4px solid #000;
+    box-shadow: 4px 4px 0px 0px #000;
+    border-radius: 0.75rem;
+    transition: all 0.2s ease;
   }
-  
-  .glow-md {
-    box-shadow: var(--glow-md);
+
+  .neu-card:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px 0px #000;
   }
-  
-  .glow-lg {
-    box-shadow: var(--glow-lg);
+
+  .neu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    background-color: var(--color-primary);
+    border: 4px solid #000;
+    box-shadow: 4px 4px 0px 0px #000;
+    border-radius: 0.75rem;
+    transition: all 0.2s ease;
   }
-  
-  .gradient-border {
-    @apply relative;
-    background: linear-gradient(135deg, rgba(217, 70, 239, 0.1), rgba(139, 92, 246, 0.1));
-    border: 1px solid;
-    border-image: linear-gradient(135deg, #d946ef, #8b5cf6) 1;
+
+  .neu-button:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0px 0px 0px 0px #000;
+  }
+
+  .neu-button-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    background-color: var(--color-secondary);
+    border: 4px solid #000;
+    box-shadow: 4px 4px 0px 0px #000;
+    border-radius: 0.75rem;
+    transition: all 0.2s ease;
+  }
+
+  .neu-button-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    background-color: #ffffff;
+    border: 4px solid #000;
+    box-shadow: 4px 4px 0px 0px #000;
+    border-radius: 0.75rem;
+    transition: all 0.2s ease;
+  }
+
+  .neu-input {
+    width: 100%;
+    padding: 1rem;
+    background-color: #ffffff;
+    border: 4px solid #000;
+    border-radius: 0.75rem;
+    font-weight: 700;
+    outline: none;
+    transition: all 0.2s ease;
+  }
+
+  .neu-input:focus {
+    box-shadow: 0 0 0 4px rgba(204, 243, 129, 0.3);
+  }
+
+  .neu-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    font-weight: 900;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: 2px solid #000;
+    border-radius: 9999px;
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-  html {
-    color-scheme: dark;
-  }
   body {
-    @apply bg-background text-foreground;
-    background: linear-gradient(135deg, #0f0f1f 0%, #1a1a2e 50%, #16213e 100%);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+  
+  h1, h2, h3, h4 {
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
   }
 }

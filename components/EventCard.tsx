@@ -21,18 +21,17 @@ export default function EventCard({
 
   return (
     <motion.div
-      className="glass-card flex flex-col min-h-80 p-8 rounded-3xl group"
-      whileHover={{ y: -10 }}
-      transition={{ type: "spring", stiffness: 300 }}
+      className="neu-card flex flex-col p-8 bg-white group relative overflow-hidden"
+      whileHover={{ x: 4, y: 4 }}
     >
-      <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-        <div className="w-24 h-24 bg-primary rounded-full blur-3xl"></div>
+      <div className="absolute top-0 right-0 p-4 transform translate-x-4 -translate-y-4">
+        <div className="w-16 h-16 bg-primary/20 border-4 border-black rounded-full"></div>
       </div>
 
       {/* Header */}
       <div className="mb-8 relative z-10">
-        <h3 className="text-3xl md:text-4xl font-black mb-3 gradient-text">{wardName}</h3>
-        <div className="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-muted-foreground">
+        <h3 className="text-4xl font-black mb-3 italic tracking-tighter uppercase">{wardName}</h3>
+        <div className="neu-badge bg-secondary">
           {date}
         </div>
       </div>
@@ -40,17 +39,17 @@ export default function EventCard({
       {/* Capacity Bar */}
       <div className="mb-10 flex-grow relative z-10">
         <div className="flex justify-between items-end mb-4">
-          <span className="text-xs font-bold uppercase tracking-tighter text-muted-foreground">Availability</span>
-          <span className="text-lg font-black text-foreground">
-            {capacity}<span className="text-muted-foreground text-sm font-medium">/{maxCapacity}</span>
+          <span className="text-xs font-black uppercase tracking-widest text-black/40">Availability</span>
+          <span className="text-xl font-black text-black">
+            {capacity}<span className="text-black/40 text-sm font-bold">/{maxCapacity}</span>
           </span>
         </div>
-        <div className="w-full h-3 bg-white/5 rounded-full relative overflow-hidden ring-1 ring-white/10">
+        <div className="w-full h-6 bg-white border-4 border-black rounded-full relative overflow-hidden">
           <motion.div
-            className="h-full bg-gradient-to-r from-primary to-secondary shadow-[0_0_10px_rgba(157,82,255,0.5)]"
+            className="h-full bg-primary border-r-4 border-black"
             initial={{ width: 0 }}
             whileInView={{ width: `${capacityPercentage}%` }}
-            transition={{ duration: 1.5, ease: "circOut" }}
+            transition={{ duration: 1, ease: "circOut" }}
           />
         </div>
       </div>
@@ -58,7 +57,7 @@ export default function EventCard({
       {/* CTA Button */}
       <button
         onClick={onRegister}
-        className="premium-button w-full text-center font-bold text-base mt-auto"
+        className="neu-button-secondary w-full text-center font-black text-lg"
       >
         Claim Your Spot
       </button>

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,76 +16,73 @@ export default function Header() {
   ];
 
   return (
-    <header className="glass-header w-full px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group transition-transform hover:scale-105">
-            <div className="relative">
-              <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full group-hover:bg-primary/40 transition-colors"></div>
-              <Image
-                src="/var-logo.png"
-                alt="VAR 37-38 Logo"
-                width={50}
-                height={50}
-                className="h-10 w-auto relative z-10"
-              />
-            </div>
-            <div className="hidden sm:flex flex-col">
-              <span className="font-black text-lg leading-none gradient-text">VAR</span>
-              <span className="text-[10px] uppercase tracking-widest font-bold text-muted-foreground">37-38</span>
-            </div>
-          </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-10">
-            {navItems.map((item) => (
-              <Link
-                key={item.id}
-                href={item.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-all hover:tracking-wider"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-
-          {/* CTA Button - Desktop */}
-          <div className="hidden md:block">
-            <button className="premium-button text-sm">
-              Get Started
-            </button>
+    <header className="w-full bg-background border-b-4 border-black p-4 md:p-6 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        {/* Logo */}
+        <Link 
+          href="/" 
+          className="flex items-center gap-3 group active:translate-x-1 active:translate-y-1 transition-all"
+        >
+          <div className="w-12 h-12 bg-primary border-4 border-black rounded-xl flex items-center justify-center neu-shadow">
+            <span className="font-black text-2xl italic">V</span>
           </div>
+          <div className="flex flex-col">
+            <span className="font-black text-2xl leading-none uppercase tracking-tighter">VAR</span>
+            <span className="text-xs font-black uppercase tracking-widest">37-38</span>
+          </div>
+        </Link>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-foreground/80 hover:text-primary transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-10">
+          {navItems.map((item) => (
+            <Link
+              key={item.id}
+              href={item.href}
+              className="text-sm font-black uppercase tracking-widest hover:bg-secondary px-3 py-1 rounded-lg border-2 border-transparent hover:border-black transition-all"
+            >
+              {item.label}
+            </Link>
+          ))}
+          <button className="neu-button text-sm py-2 px-6">
+            Get Started
           </button>
-        </div>
+        </nav>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden p-2 bg-white border-4 border-black rounded-xl neu-shadow active:shadow-none transition-all"
+          aria-label="Toggle menu"
+        >
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      {/* Mobile Navigation */}
+      <AnimatePresence>
         {isMenuOpen && (
-          <nav className="md:hidden pb-10 space-y-6 pt-6 animate-in slide-in-from-top-4 duration-300">
+          <motion.nav
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="md:hidden absolute top-full left-0 w-full bg-background border-b-4 border-black p-6 space-y-6 z-40"
+          >
             {navItems.map((item) => (
               <Link
                 key={item.id}
                 href={item.href}
-                className="block text-lg font-bold hover:text-primary transition-colors"
+                className="block text-xl font-black uppercase border-b-4 border-black/10 pb-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
-            <button className="w-full premium-button text-base">
+            <button className="neu-button w-full text-lg">
               Get Started
             </button>
-          </nav>
+          </motion.nav>
         )}
-      </div>
+      </AnimatePresence>
     </header>
   );
 }
