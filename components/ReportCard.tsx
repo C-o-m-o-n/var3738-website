@@ -19,45 +19,49 @@ export default function ReportCard({
   description,
   type,
   pages,
-  typeColor,
   index,
 }: ReportCardProps) {
   return (
     <motion.div
-      className="stamp-card bg-background flex flex-col hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-shadow"
+      className="neu-card flex flex-col p-8 bg-white group h-full"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
     >
       {/* Report Type Badge */}
-      <div className={`w-fit px-3 py-2 ${typeColor} text-foreground rounded-none border-2 border-foreground font-bold text-xs mb-4`}>
-        {type}
+      <div className="flex justify-between items-start mb-6">
+        <div className="w-16 h-16 bg-accent border-4 border-black rounded-2xl flex items-center justify-center neu-shadow transform -rotate-6 group-hover:rotate-0 transition-transform">
+           <FileText size={32} className="text-black" />
+        </div>
+        <div className="neu-badge bg-primary">
+          {type}
+        </div>
       </div>
 
       {/* Content */}
-      <h3 className="text-xl font-black mb-3 flex-grow">
+      <h3 className="text-2xl font-black mb-4 flex-grow leading-tight uppercase italic tracking-tighter">
         {title}
       </h3>
 
-      <p className="text-sm text-muted-foreground mb-6">
+      <p className="text-sm text-black/70 font-bold mb-8 leading-relaxed">
         {description}
       </p>
 
       {/* Meta Info */}
-      <div className="space-y-2 mb-6 pb-6 border-t-4 border-foreground pt-4">
-        <div className="flex items-center gap-2 text-xs font-bold text-muted-foreground">
-          <Calendar size={16} />
+      <div className="grid grid-cols-2 gap-4 mb-8 pt-6 border-t-4 border-black/5">
+        <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-black/40">
+          <Calendar size={14} />
           {date}
         </div>
-        <div className="flex items-center gap-2 text-xs font-bold text-muted-foreground">
-          <FileText size={16} />
+        <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-black/40">
+          <FileText size={14} />
           {pages} pages
         </div>
       </div>
 
       {/* Download Button */}
-      <button className="w-full stamp-button flex items-center justify-center gap-2 font-bold text-sm hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-shadow">
+      <button className="neu-button w-full flex items-center justify-center gap-2 font-black text-sm">
         <Download size={18} />
         Download PDF
       </button>

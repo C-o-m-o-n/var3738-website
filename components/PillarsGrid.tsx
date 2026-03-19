@@ -27,19 +27,19 @@ export default function PillarsGrid({ pillars }: PillarsGridProps) {
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6 },
+      transition: { duration: 0.8, ease: "easeOut" },
     },
   };
 
   return (
-    <section className="w-full py-16 md:py-24 bg-background">
+    <section className="w-full py-16 md:py-24 bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -48,30 +48,31 @@ export default function PillarsGrid({ pillars }: PillarsGridProps) {
           {pillars.map((pillar, idx) => (
             <motion.div
               key={idx}
-              className="glow-card min-h-96 flex flex-col justify-between group"
+              className="neu-card min-h-[400px] flex flex-col p-10 bg-white group relative"
               variants={cardVariants}
-              whileHover={{ y: -8, borderColor: 'rgba(217, 70, 239, 0.8)' }}
             >
               {/* Icon/Accent */}
               {pillar.icon && (
-                <div className={`w-16 h-16 ${pillar.accentColor || 'bg-gradient-to-br from-primary to-secondary'} rounded-lg flex items-center justify-center mb-4 text-white glow-md`}>
-                  {pillar.icon}
+                <div className="relative mb-10">
+                  <div className={`w-20 h-20 ${pillar.accentColor || 'bg-primary'} border-4 border-black rounded-2xl flex items-center justify-center text-black relative z-10 neu-shadow group-hover:bg-accent transition-all duration-300`}>
+                    {pillar.icon}
+                  </div>
                 </div>
               )}
 
               {/* Title */}
-              <h3 className="text-2xl md:text-3xl font-black mb-4 text-balance text-foreground">
+              <h3 className="text-4xl font-black mb-6 leading-tight uppercase italic tracking-tighter">
                 {pillar.title}
               </h3>
 
               {/* Description */}
-              <p className="text-sm md:text-base leading-relaxed flex-grow text-muted-foreground">
+              <p className="text-lg leading-tight flex-grow font-bold text-black/80">
                 {pillar.description}
               </p>
 
               {/* Bottom Accent */}
-              <div className="mt-8 pt-6 border-t border-border/50">
-                <span className="text-xs font-bold uppercase tracking-widest text-primary/70">
+              <div className="mt-10 pt-8 border-t-4 border-black/5 flex items-center justify-between">
+                <span className="neu-badge bg-secondary">
                   Core Pillar
                 </span>
               </div>

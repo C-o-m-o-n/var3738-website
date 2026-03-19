@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,78 +12,71 @@ export default function Header() {
   const navItems = [
     { id: 'home', label: 'Home', href: '/' },
     { id: 'democracy', label: 'Democracy Activated', href: '/democracy-activated' },
-    { id: 'resilience', label: 'Digital Resilience', href: '/reports' },
     { id: 'reports', label: 'Reports', href: '/reports' },
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-border/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <Image
-              src="/var-logo.png"
-              alt="VAR 37-38 Logo"
-              width={50}
-              height={50}
-              className="h-12 w-auto"
-            />
-            <div className="hidden sm:flex flex-col">
-              <span className="font-bold text-sm leading-none text-primary">VAR</span>
-              <span className="text-xs font-bold text-muted-foreground">37-38</span>
-            </div>
-          </Link>
+    <header className="w-full bg-background border-b-4 border-black p-4 md:p-6 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        {/* Logo */}
+        <Link 
+          href="/" 
+          className="flex items-center gap-3 group active:translate-x-1 active:translate-y-1 transition-all"
+        >
+          <Image src="/var-logo-nobg.png" alt="VAR 37-38 Logo" width={100} height={100} />
+        </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.id}
-                href={item.href}
-                className="font-bold text-sm hover:text-primary transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-
-          {/* CTA Button - Desktop */}
-          <div className="hidden md:block">
-            <button className="glow-button text-sm">
-              Join the Movement
-            </button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 hover:text-primary transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-10">
+          {navItems.map((item) => (
+            <Link
+              key={item.id}
+              href={item.href}
+              className="text-sm font-black uppercase tracking-widest hover:bg-secondary px-3 py-1 rounded-lg border-2 border-transparent hover:border-black transition-all"
+            >
+              {item.label}
+            </Link>
+          ))}
+          <button className="neu-button text-sm py-2 px-6">
+            Get Started
           </button>
-        </div>
+        </nav>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden p-2 bg-white border-4 border-black rounded-xl neu-shadow active:shadow-none transition-all"
+          aria-label="Toggle menu"
+        >
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      {/* Mobile Navigation */}
+      <AnimatePresence>
         {isMenuOpen && (
-          <nav className="md:hidden pb-6 space-y-4 border-t border-border/50 pt-4">
+          <motion.nav
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="md:hidden absolute top-full left-0 w-full bg-background border-b-4 border-black p-6 space-y-6 z-40"
+          >
             {navItems.map((item) => (
               <Link
                 key={item.id}
                 href={item.href}
-                className="block font-bold text-sm hover:text-primary transition-colors"
+                className="block text-xl font-black uppercase border-b-4 border-black/10 pb-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
-            <button className="w-full glow-button text-sm mt-4">
-              Join the Movement
+            <button className="neu-button w-full text-lg">
+              Get Started
             </button>
-          </nav>
+          </motion.nav>
         )}
-      </div>
+      </AnimatePresence>
     </header>
   );
 }
