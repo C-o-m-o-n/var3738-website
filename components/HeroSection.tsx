@@ -56,7 +56,7 @@ export default function HeroSection({
         >
           <Image
             src={imageSrc}
-            alt="Hero Image"
+            alt="Youth leaders and participants at the VAR Trans Nzoia Townhall Series"
             fill
             className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-1000"
             priority
