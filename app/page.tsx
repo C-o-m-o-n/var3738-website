@@ -9,8 +9,37 @@ import DetailedPillars from '@/components/DetailedPillars';
 import PartnershipFramework from '@/components/PartnershipFramework';
 
 export default function Home() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'NGO',
+    'name': 'VAR 37/38',
+    'legalName': 'Viable Alternative Republic',
+    'url': 'https://var3738.org',
+    'logo': 'https://var3738.org/icon.svg',
+    'foundingDate': '2024',
+    'founders': [
+      {
+        '@type': 'Person',
+        'name': 'Keno Manwar'
+      }
+    ],
+    'address': {
+      '@type': 'PostalAddress',
+      'addressCountry': 'Kenya'
+    },
+    'areaServed': 'Kenya',
+    'sameAs': [
+      'https://www.youtube.com/@VAR3738',
+      'https://www.tiktok.com/@var3738'
+    ]
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <HeroSection />
       
       {/* 3-Stage Lifecycle (Bento Grid) - Keeping for visual impact */}

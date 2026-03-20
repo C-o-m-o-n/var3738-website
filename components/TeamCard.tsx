@@ -21,7 +21,7 @@ export default function TeamCard({ name, position, image }: TeamCardProps) {
       <div className="relative aspect-4/5 w-full overflow-hidden bg-white/5">
         <Image
           src={`/team/${image}`}
-          alt={name}
+          alt={`VAR 37/38 Team Member: ${name} - ${position}`}
           fill
           className="object-contain p-4 group-hover:scale-105 transition-transform duration-700"
         />

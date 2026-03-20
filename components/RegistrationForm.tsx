@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, X, ArrowRight, User, Mail, Phone, Lock, Hash } from 'lucide-react';
+import Portal from './Portal';
 
 interface RegistrationFormProps {
   wardName: string;
@@ -64,8 +65,9 @@ export default function RegistrationForm({ wardName, onClose }: RegistrationForm
   };
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 overflow-y-auto px-4 py-10 md:py-20 flex justify-center items-start md:items-center">
-      <motion.div
+    <Portal>
+      <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-100 overflow-y-auto px-4 py-10 md:py-20 flex justify-center items-start md:items-center">
+        <motion.div
         className="modern-card max-w-xl w-full p-8 md:p-12 relative overflow-hidden"
         initial={{ opacity: 0, scale: 0.95, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -283,5 +285,6 @@ export default function RegistrationForm({ wardName, onClose }: RegistrationForm
         </AnimatePresence>
       </motion.div>
     </div>
+    </Portal>
   );
 }

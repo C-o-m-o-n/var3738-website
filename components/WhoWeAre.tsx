@@ -46,7 +46,7 @@ export default function WhoWeAre() {
             >
               <Image 
                 src="/trans-nzoia-townhall/tnts-image10.jpeg"
-                alt="VAR Movement in Action"
+                alt="VAR 37-38 youth movement members engaging in civic dialogue"
                 fill
                 className="object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
               />
