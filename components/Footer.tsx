@@ -6,10 +6,10 @@ import Image from 'next/image';
 
 export default function Footer() {
   const socialLinks = [
-    { icon: Instagram, href: '#', label: 'Instagram' },
+    { icon: Instagram, href: 'https://www.instagram.com/var3738_/', label: 'Instagram' },
     { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Youtube, href: '#', label: 'YouTube' },
-    { icon: Facebook, href: '#', label: 'Facebook' },
+    { icon: Youtube, href: 'https://www.youtube.com/channel/UCichgvHKGtldAZuRDM2WeVw', label: 'YouTube' },
+    { icon: Facebook, href: 'https://web.facebook.com/profile.php?id=61578676963897', label: 'Facebook' },
   ];
 
   return (
