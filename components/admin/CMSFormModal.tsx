@@ -1,11 +1,15 @@
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { X, Loader2, Save, UploadCloud, Link as LinkIcon, Image as ImageIcon } from 'lucide-react';
+import dynamic from 'next/dynamic';
+import 'react-quill/dist/quill.snow.css';
+
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 export interface FormField {
   name: string;
   label: string;
-  type: 'text' | 'number' | 'textarea' | 'url' | 'date' | 'file';
+  type: 'text' | 'number' | 'textarea' | 'url' | 'date' | 'file' | 'richtext';
   folder?: string; // used for file uploads to Cloudinary
   multiple?: boolean;
   required?: boolean;
@@ -141,6 +145,14 @@ export default function CMSFormModal({
                     rows={4}
                     className="bg-black/50 border border-white/10 rounded-lg p-3 text-sm text-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors"
                   />
+                ) : field.type === 'richtext' ? (
+                  <div className="bg-white/95 rounded-lg text-black overflow-hidden [&_.ql-toolbar]:bg-gray-100 [&_.ql-container]:min-h-[250px] [&_.ql-editor]:min-h-[250px]">
+                    <ReactQuill 
+                      theme="snow"
+                      value={formData[field.name] || ''}
+                      onChange={(content) => setFormData((prev: any) => ({ ...prev, [field.name]: content }))}
+                    />
+                  </div>
                 ) : field.type === 'file' ? (
                   <div className="space-y-3">
                     <div className="flex items-center gap-4">

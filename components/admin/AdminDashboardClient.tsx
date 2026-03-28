@@ -89,7 +89,7 @@ export default function AdminDashboardClient() {
         title: initialData ? 'Edit Dispatch' : 'New Dispatch',
         fields: [
           { name: 'title', label: 'Title', type: 'text', required: true },
-          { name: 'content', label: 'Content', type: 'textarea', required: true }
+          { name: 'content', label: 'Content', type: 'richtext', required: true }
         ],
         onSubmit: async (data: any) => {
           if (initialData) await api.updatePost(initialData.id, data);
@@ -169,9 +169,7 @@ export default function AdminDashboardClient() {
             await api.updateGalleryItem(initialData.id, data);
           } else {
             if (Array.isArray(data.image_url)) {
-              await Promise.all(data.image_url.map((url: string) => 
-                api.createGalleryItem({ ...data, image_url: url })
-              ));
+              await api.createGalleryBulk({ title: data.title, image_urls: data.image_url });
             } else {
               await api.createGalleryItem(data);
             }
