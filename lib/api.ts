@@ -3,7 +3,7 @@
  * This module provides a typed interface to the FastAPI backend.
  */
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1' || 'https://api.var3738.org/api/v1';
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL
 
 // --- Types ---
 
@@ -150,6 +150,8 @@ export const api = {
   // Merch
   async getProducts(activeOnly = true): Promise<Product[]> {
     const response = await fetch(`${BASE_URL}/merch/products?active_only=${activeOnly}`);
+    
+    console.log("BASE_URL: ", BASE_URL)
     return handleResponse<Product[]>(response);
   },
 
